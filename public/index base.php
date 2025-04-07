@@ -28,5 +28,5 @@ $app->get('/', function (RequestInterface $request, ResponseInterface $response,
 });
 
 // Run the application
-$app->setBasePath('/sample-rest-api');
+$app->setBasePath('/' . basename(dirname(__DIR__)));
 $app->run();

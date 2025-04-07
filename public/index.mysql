@@ -12,7 +12,7 @@ use Slim\Factory\AppFactory;
 $app = AppFactory::create();
 
 // Configurar la ruta base
-$app->setBasePath('/sample-rest-api');
+$app->setBasePath('/' . basename(dirname(__DIR__)));
 
 // Configurar Slim para procesar datos JSON
 $app->addBodyParsingMiddleware();

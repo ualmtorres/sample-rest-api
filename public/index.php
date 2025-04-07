@@ -12,13 +12,14 @@ use Slim\Factory\AppFactory;
 $app = AppFactory::create();
 
 // Configurar la ruta base
-$app->setBasePath('/sample-rest-api');
+$app->setBasePath('/' . basename(dirname(__DIR__)));
 
 // Configurar Slim para procesar datos JSON
 $app->addBodyParsingMiddleware();
 
 // Helper function to handle the response
-function createJsonResponse(ResponseInterface $response, array $data): ResponseInterface {
+function createJsonResponse(ResponseInterface $response, array $data): ResponseInterface
+{
     // Set the response content type
     $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
 
@@ -190,13 +191,13 @@ $app->put('/product/{id}', function (RequestInterface $request, ResponseInterfac
         // Actualizar el producto
 
         // Asignar $name y $price si existen, de lo contrario asignar NULL
-        $name = isset($body['name']) ? $body['name'] : NULL; 
-        $price = isset($body['price']) ? $body['price'] : NULL; 
+        $name = isset($body['name']) ? $body['name'] : NULL;
+        $price = isset($body['price']) ? $body['price'] : NULL;
 
         $updatedAt = date('Y-m-d H:i:s');
 
         // Update the product. COALESCE is used to keep the existing value if the new value is NULL  
-        $query = "UPDATE product SET name = COALESCE(?, name), price = COALESCE(?, price), updated_at = ? WHERE id = ?";   
+        $query = "UPDATE product SET name = COALESCE(?, name), price = COALESCE(?, price), updated_at = ? WHERE id = ?";
         $stmt = $mysqli->prepare($query);
         $stmt->bind_param('sdsi', $name, $price, $updatedAt, $productId);
         $result = $stmt->execute();

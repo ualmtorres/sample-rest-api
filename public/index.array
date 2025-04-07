@@ -10,7 +10,7 @@ use Slim\Factory\AppFactory;
 $app = AppFactory::create();
 
 // Set the base path
-$app->setBasePath('/sample-rest-api');
+$app->setBasePath('/' . basename(dirname(__DIR__)));
 
 // Setup Slim to process JSON data  
 $app->addBodyParsingMiddleware();   
