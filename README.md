@@ -26,6 +26,14 @@ Este proyecto es una API REST simple construida usando Slim Framework y MySQL. P
     SOURCE path/to/your/sql/sample_api.sql
     ```
 
+> NOTE
+>
+> El proyecto cuenta con un archivo `docker-compose.yml` que despliega toda la infraestructura necesaria para ejecutar la API. Si prefieres usar Docker, puedes omitir los pasos de instalación manual y simplemente ejecutar:
+> ```bash
+> docker-compose up -d
+> ```
+> Esto levantará un contenedor con PHP, MySQL y Nginx, y podrás acceder a la API en `http://localhost:80`.
+
 5. Actualiza la configuración de la base de datos en `db.php`:
     ```php
     // filepath: /c:/xampp/htdocs/sample-rest-api/db.php
@@ -43,7 +51,7 @@ Este proyecto es una API REST simple construida usando Slim Framework y MySQL. P
 
 ## Uso
 
-1. Inicia el servidor PHP integrado:
+1. Inicia el servidor PHP integrado si no estás ejecutando el proyecto en XAMPP o Docker:
     ```bash
     php -S localhost:8000 -t public
     ```

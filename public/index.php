@@ -11,8 +11,6 @@ use Slim\Factory\AppFactory;
 // Crear la aplicación
 $app = AppFactory::create();
 
-// Configurar la ruta base
-$app->setBasePath('/' . basename(dirname(__DIR__)));
 
 // Configurar Slim para procesar datos JSON
 $app->addBodyParsingMiddleware();
@@ -30,12 +28,7 @@ function createJsonResponse(ResponseInterface $response, array $data): ResponseI
     return $response;
 }
 
-$host = 'localhost';
-$dbname = 'sample_api';
-$username = 'root';
-$password = '';
-
-$mysqli = new mysqli($host, $username, $password, $dbname);
+$mysqli = new mysqli($host, $username, $password, $database);
 
 if ($mysqli->connect_error) {
     die('Connection failed: ' . $mysqli->connect_error);
